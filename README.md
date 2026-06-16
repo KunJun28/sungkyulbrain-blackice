@@ -144,10 +144,9 @@ AI 모델(Random Forest)은 전도도 외에 **측정 시간, 온도, 습도**�
 │   ├── index.html
 │   ├── app.js
 │   └── style.css
-├── data/
-│   └── blackice.db                 # SQLite DB (gitignore 제외)
 ├── docs/
 │   ├── architecture.png            # 시스템 아키텍처 다이어그램
+│   ├── chamber_test.jpg            # 결빙 시뮬레이션 챔버 실험 사진
 │   └── personal_work_summary.md
 └── hardware/                       # 하드웨어 관련 코드
     ├── FinalNodeCode/
