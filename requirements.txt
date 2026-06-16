@@ -1,0 +1,2 @@
+# Python 3.14 friendly build
+# No external package is required for the demo.

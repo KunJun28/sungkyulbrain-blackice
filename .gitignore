@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+data/blackice.db
+server.log
+.env
+.claude/

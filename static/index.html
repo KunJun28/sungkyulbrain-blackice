@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>실시간 도로결빙 모니터링 대시보드</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-copy">
+      <p class="eyebrow">Black Ice Monitoring System</p>
+      <h1>실시간 도로결빙 모니터링 대시보드</h1>
+      <p class="subtitle">기준 학교: <strong>__SCHOOL_NAME__</strong> · 단말/DB/AI 판단 결과 통합 관제</p>
+    </div>
+    <div class="header-actions">
+      <button id="reset-view-btn" class="button secondary" type="button">학교 주변으로</button>
+      <button id="fit-nodes-btn" class="button" type="button">전체 노드 보기</button>
+    </div>
+  </header>
+
+  <main class="dashboard-shell">
+    <section class="map-section card">
+      <div class="map-toolbar">
+        <div>
+          <span class="section-kicker">Live Map</span>
+          <h2>성결대학교 주변 결빙 위험 지도</h2>
+        </div>
+        <div class="map-meta">
+          <span id="backend-status" class="status-chip loading">서버 확인 중</span>
+          <span id="last-updated" class="last-updated">최근 업데이트: -</span>
+        </div>
+      </div>
+      <div id="map" aria-label="도로 결빙 노드 지도"></div>
+      <div class="map-legend" aria-label="상태 범례">
+        <span><i class="legend-dot safe"></i>안전</span>
+        <span><i class="legend-dot caution"></i>주의</span>
+        <span><i class="legend-dot danger"></i>위험</span>
+        <span><i class="legend-dot unknown"></i>데이터 없음</span>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <section class="panel-card card summary-card">
+        <div class="panel-title-row">
+          <div>
+            <span class="section-kicker">Overview</span>
+            <h2>노드 상태 요약</h2>
+          </div>
+          <span id="node-count" class="muted">0개</span>
+        </div>
+        <div id="node-summary" class="status-grid"></div>
+        <div class="filter-row" role="group" aria-label="노드 상태 필터">
+          <button class="filter-pill active" data-filter="all" type="button">전체</button>
+          <button class="filter-pill" data-filter="danger" type="button">위험</button>
+          <button class="filter-pill" data-filter="caution" type="button">주의</button>
+          <button class="filter-pill" data-filter="safe" type="button">안전</button>
+          <button class="filter-pill" data-filter="unknown" type="button">없음</button>
+        </div>
+        <div id="node-list" class="node-list"></div>
+      </section>
+
+      <section class="panel-card card detail-card">
+        <div class="panel-title-row">
+          <div>
+            <span class="section-kicker">Detail</span>
+            <h2>선택 노드 상세</h2>
+          </div>
+        </div>
+        <div id="node-detail" class="empty-state">지도의 노드를 클릭하거나 우측 목록에서 노드를 선택하면 상세 정보가 표시됩니다.</div>
+      </section>
+
+      <section class="panel-card card">
+        <div class="panel-title-row">
+          <div>
+            <span class="section-kicker">Recent</span>
+            <h2>최근 측정값</h2>
+          </div>
+        </div>
+        <div id="recent-list" class="recent-list"></div>
+      </section>
+
+    </aside>
+  </main>
+
+  <script>
+    window.BLACKICE_BOOTSTRAP = {
+      schoolLat: __SCHOOL_LAT__,
+      schoolLon: __SCHOOL_LON__
+    };
+  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
